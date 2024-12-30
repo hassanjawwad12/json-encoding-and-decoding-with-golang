@@ -11,8 +11,8 @@ import (
 type Todo struct {
 	//we can have private fields by using smallcase , it wont be visible to anything outside the package
 	UserId    int    `json:"userId"` //if u dont want to show this then use -
-	ID        int    `json:"id:`
-	Title     string `json:"title, omitempty"` //use this json flag to ignore empty srings
+	ID        int    `json:"id":`
+	Title     string `json:"title,omitempty"` //use this json flag to ignore empty srings
 	Completed bool   `json:"completed"`
 }
 
