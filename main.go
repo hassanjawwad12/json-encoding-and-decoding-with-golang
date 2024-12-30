@@ -3,7 +3,6 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"io"
 	"log"
 	"net/http"
 )
@@ -26,23 +25,6 @@ func main() {
 	}
 
 	defer response.Body.Close() //close the body after reading to prevent the memory leaks
-
-	if response.StatusCode == http.StatusOK+1 {
-		bodyBytes, err := io.ReadAll(response.Body) //reading the response body
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		//reading data in string directly
-		data := string(bodyBytes)
-		fmt.Println("The data is followingL:")
-		fmt.Println(data)
-
-		//reading json in a struct
-		todoItem := Todo{}
-		json.Unmarshal(bodyBytes, &todoItem) //parses JSON and store result in struct
-		fmt.Printf("To do item is: %+v", todoItem)
-	}
 
 	//simplest way to do this is
 	if response.StatusCode == http.StatusOK {
